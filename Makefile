@@ -11,7 +11,7 @@ linux:
 	cp -r lib/Linux/HCNetSDKCom/ build/linux/
 
 windows:
-	CGO_LDFLAGS_ALLOW=".*" CGO_CFLAGS="-I${WDIR}/include" CGO_LDFLAGS="-L${WDIR}/lib/Windows -Wl,--enable-stdcall-fixup,-rpath=${WDIR}/lib/Windows -lHCNetSDK" GOOS=windows CC=x86_64-w64-mingw32-gcc CXX=x86_64-w64-mingw32-g++ go build -ldflags "-s -w" -o build/Windows/hik.exe main.go
+	CGO_LDFLAGS_ALLOW=".*" CGO_CFLAGS="-I${WDIR}/HCNetSDK_golang/include" CGO_LDFLAGS="-L${WDIR}/HCNetSDK_golang/lib/Windows -Wl,--enable-stdcall-fixup,-rpath=${WDIR}/HCNetSDK_golang/lib/Windows -lHCNetSDK" GOOS=windows CC=x86_64-w64-mingw32-gcc CXX=x86_64-w64-mingw32-g++ go build -ldflags "-s -w" -o build/Windows/hik.exe main.go
 	cp -r lib/Windows/ build/
 
 clean:
