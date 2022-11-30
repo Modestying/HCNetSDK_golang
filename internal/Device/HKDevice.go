@@ -2,7 +2,7 @@ package Device
 
 /*
 #cgo CFLAGS:  -I../../include
-#cgo LDFLAGS: -L./../../lib -lssl -lHCCore -lhcnetsdk -lhpr
+#cgo LDFLAGS: -L$../../build  -lHCCore -lHCNETSDK -lhpr
 #include <stdio.h>
 #include <stdlib.h>
 #include "HCNetSDK.h"
@@ -91,10 +91,10 @@ func (device *HKDevice) SetAlarmCallBack() error {
 }
 func (device *HKDevice) StartListenAlarmMsg() error {
 	var struAlarmParam C.NET_DVR_SETUPALARM_PARAM
-	struAlarmParam.dwSize = C.uint(unsafe.Sizeof(struAlarmParam))
+	struAlarmParam.dwSize = C.uint(unsafe.Sizeof(struAlarmParam)) //Windows -> C.ulong
 	struAlarmParam.byAlarmInfoType = 0
 
-	device.alarmHandle = int(C.NET_DVR_SetupAlarmChan_V41(C.int(device.loginId), &struAlarmParam))
+	device.alarmHandle = int(C.NET_DVR_SetupAlarmChan_V41(C.int(device.loginId), &struAlarmParam)) // Windows -> C.long
 	if device.alarmHandle < 0 {
 		return device.HKErr("setup alarm chan")
 	}
@@ -102,7 +102,7 @@ func (device *HKDevice) StartListenAlarmMsg() error {
 }
 
 func (device *HKDevice) StopListenAlarmMsg() error {
-	if C.NET_DVR_CloseAlarmChan_V30(C.int(device.alarmHandle)) != C.TRUE {
+	if C.NET_DVR_CloseAlarmChan_V30(C.int(device.alarmHandle)) != C.TRUE { //Windows  C.long
 		return device.HKErr("stoop alarm chan")
 	}
 	return nil

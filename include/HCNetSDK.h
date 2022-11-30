@@ -460,7 +460,7 @@ LONG NET_DVR_SetupAlarmChan_V41(LONG lUserID, LPNET_DVR_SETUPALARM_PARAM lpSetup
 
 // car capture
 
-BOOL NET_DVR_ManualSnap(LONG lUserID, NET_DVR_MANUALSNAP const* lpInter, LPNET_DVR_PLATE_RESULT lpOuter);
+//BOOL NET_DVR_ManualSnap(LONG lUserID, NET_DVR_MANUALSNAP const* lpInter, LPNET_DVR_PLATE_RESULT lpOuter);
 BOOL NET_DVR_ContinuousShoot(LONG lUserID, LPNET_DVR_SNAPCFG lpInter);
 
 #endif

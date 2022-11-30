@@ -1,16 +1,9 @@
 package main
 
-/*
-#cgo CFLAGS:  -I./include
-#cgo LDFLAGS: -L./lib/Linux -lhcnetsdk
-#cgo LDFLAGS:-Wl,-rpath,./lib/Linux
-*/
-import "C"
-
 import (
 	"alarm/internal/Device"
-	"log"
-	"time"
+	"fmt"
+	"runtime"
 )
 
 func init() {
@@ -18,6 +11,7 @@ func init() {
 }
 
 func main() {
+	fmt.Println(runtime.GOOS)
 	info := Device.DeviceInfo{
 		IP:       "192.168.0.66",
 		UserName: "admin",
@@ -26,17 +20,17 @@ func main() {
 	}
 	device := Device.NewHKDevice(info)
 	if _, err := device.Login(); err != nil {
-		log.Println(err.Error())
+		fmt.Println(err.Error())
 	} else {
-		log.Println("success login")
+		fmt.Println("success login")
 	}
 	defer func() {
 		device.Logout()
 		Device.HKExit()
 	}()
 
-	device.SetAlarmCallBack()
-	device.StartListenAlarmMsg()
-	time.Sleep(time.Second * 100)
-	device.StopListenAlarmMsg()
+	// device.SetAlarmCallBack()
+	// device.StartListenAlarmMsg()
+	// time.Sleep(time.Second * 100)
+	// device.StopListenAlarmMsg()
 }
