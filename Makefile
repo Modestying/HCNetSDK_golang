@@ -4,10 +4,7 @@ export WDIR=${PWD}
 all: linux windows
 
 linux:
-	cp lib/Linux/libhcnetsdk.so build/
-	cp lib/Linux/libHCCore.so build/
-	cp lib/Linux/libhpr.so build/
-	cp -r lib/Linux/HCNetSDKCom/ build/
+	cp -r lib/Linux/ build/ 
 	GOOS=linux  CGO_CFLAGS="-I${WDIR}/include"  CGO_LDFLAGS="-L${WDIR}/build -Wl,-rpath=${WDIR}/build -lhcnetsdk" go build -ldflags "-s -w" -o build/hik main.go
 
 windows:

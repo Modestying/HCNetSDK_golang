@@ -14,6 +14,7 @@
 * 可以根据自己需求修改`include`下`HCNetSDK.h`
 * 遇到问题/有需求请提交 Issues，一起讨论
 * demo.go为参考链接示例，不包含报警功能
+* 默认为linux平台开发，再Windows平台请根据提示修改`HKDevice.go`中对应的变量类型
 
 ## 实现功能
 
@@ -42,8 +43,6 @@
     Linux:
     make clean
     ```
+## 联系方式
 
-## 问题记录
-
-1. Linux遇到错误29  
-`Ans`: 环境没配好，把`lib/linux`下的文件扔到`/usr/lib/`下面就好了
+* https://www.cnblogs.com/erfeng/

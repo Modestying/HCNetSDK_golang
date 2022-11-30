@@ -1,8 +1,9 @@
 package Device
 
+// #cgo LDFLAGS 需要根据不同的平台修改 hcnetsdk（linux) / HCNETSDK(Windows)
 /*
 #cgo CFLAGS:  -I../../include
-#cgo LDFLAGS: -L$../../build  -lHCCore -lHCNETSDK -lhpr
+#cgo LDFLAGS: -L$../../build  -lHCCore -lhpr -lhcnetsdk 
 #include <stdio.h>
 #include <stdlib.h>
 #include "HCNetSDK.h"
